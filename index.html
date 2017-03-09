@@ -8,10 +8,12 @@
 
 <body ng-controller="HomeController as homeCtrl">
     <div id="container">
+        <p id="deviceView"></p>
+
         <h1>TODO list</h1>
         <hr>
         <form id="newTodoForm" class="row">
-            <input type="text" placeholder="New todo" class="col-md-5" ng-model="homeCtrl.todo"></input>
+            <input type="text" placeholder="New todo" class="col-md-6" ng-model="homeCtrl.todo"></input>
             <div class="col-md-1"></div>
             <select class="col-md-2" ng-model="homeCtrl.selectedPriority" ng-options="priority for priority in homeCtrl.priorities">
             </select>
@@ -50,11 +52,13 @@
                 </tr>
             </table>
         </div>
-        <button type="button" ng-click="homeCtrl.seeArray()">Ver arreglo</button>
+        <button type="button" ng-click="homeCtrl.pendingTodos()">Ver arreglo</button>
         <hr>
-        <label>You have: {{homeCtrl.todos.length}} todos pending</label>
+        <p>You have: {{homeCtrl.pendingTodos()}} todos pending</p>
     </div>
+
     <!-- scripts -->
+    <link rel="text/javascript" href="index.js">
     <link rel="stylesheet" href="style.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>

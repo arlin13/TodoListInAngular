@@ -4,7 +4,7 @@ angular
 
 function HomeController() {
     var vm = this;
-
+    vm.whatever =4;
     // variables
     vm.orderByTodoStartingByA = false;
     vm.orderByPriorityStartingByA = false;
@@ -93,6 +93,10 @@ function HomeController() {
         vm.todos.splice(index, 1);
     }
 
+    // returns the pending todos count
+    vm.pendingTodos = function(index){
+      return (vm.todos.filter(function(x){ return x.done==false; })).length;
+    }
 
     vm.seeArray = function(index){
       console.log(vm.todos);
