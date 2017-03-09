@@ -1,41 +1,65 @@
 <!DOCTYPE html>
 <html ng-app="app">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>TODO List in AngularJS</title>
-  </head>
-  <body ng-controller="HomeController as homeCtrl">
-    <h1>TODO list</h1>
-    <hr>
+</head>
 
-    <br>
-    <label>Text:</label>
-    <textarea rows="1" cols="80"
-              ng-model="homeCtrl.newTodo">
-    </textarea>
+<body ng-controller="HomeController as homeCtrl">
+    <div id="container">
+        <h1>TODO list</h1>
+        <hr>
+        <form id="newTodoForm" class="row">
+            <input type="text" placeholder="New todo" class="col-md-5" ng-model="homeCtrl.todo"></input>
+            <div class="col-md-1"></div>
+            <select class="col-md-2" ng-model="homeCtrl.selectedPriority" ng-options="priority for priority in homeCtrl.priorities">
+            </select>
+            <div class="col-md-1"></div>
+            <button class="btn btn-default col-md-2" type="button" ng-click="homeCtrl.click()">
+                Add todo
+            </button>
+        </form>
 
-    <br>
-    <label>Priority:</label>
-    <input type="number" value="1" min="1" max="3">
+        <hr>
 
-    <br>
-    <button type="button" class="btn btn-info"
-            ng-click="homeCtrl.click()">
-            Add todo
-    </button>
-
-    <hr>
-    <label>You have: {{homeCtrl.todos.length}} todos pending</label>
-    <br>
-
-    <ul>
-      <li ng-repeat="todo in homeCtrl.todos">{{todo}}</li>
-    </ul>
-
+        <div id="todoListDiv">
+            <table class="table table-stripped table-hover">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th ng-click="homeCtrl.orderByTodo()">
+                        <div class="addArrows">
+                            <img src="Images/arrows.png" /> To do:
+                        </div>
+                    </th>
+                    <th ng-click="homeCtrl.orderByPriority()">
+                        <div class="addArrows">
+                            <img src="Images/arrows.png" /> Priority:
+                        </div>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                <tr ng-repeat="e in homeCtrl.todos">
+                    <td>{{$index+1}}</td>
+                    <td></td>
+                    <td><input type="checkbox" ng-model="e.done" /> {{e.todo}}</td>
+                    <td>{{e.priority}}</td>
+                    <td><img src="Images/delete.png" ng-click="homeCtrl.delete($index)"></td>
+                </tr>
+            </table>
+        </div>
+        <button type="button" ng-click="homeCtrl.seeArray()">Ver arreglo</button>
+        <hr>
+        <label>You have: {{homeCtrl.todos.length}} todos pending</label>
+    </div>
     <!-- scripts -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <script src="app/app.module.js"></script>
     <script src="app/home/home.controller.js"></script>
-  </body>
+</body>
+
 </html>
