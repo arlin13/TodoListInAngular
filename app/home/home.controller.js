@@ -22,31 +22,33 @@ function HomeController() {
     // variables
     vm.orderByTodoStartingByA = false;
     vm.orderByPriorityStartingByA = false;
-    vm.todos = [{
-            "todo": 'Be happy',
-            "priority": 'High',
-            "done": true,
-            "editing": false
-        },
-        {
-            "todo": 'Example 2',
-            "priority": 'Low',
-            "done": false,
-            "editing": false
-        },
-        {
-            "todo": 'Finish reading YDKJS',
-            "priority": 'High',
-            "done": false,
-            "editing": false
-        },
-        {
-            "todo": 'Eat',
-            "priority": 'Low',
-            "done": true,
-            "editing": false
-        }
-    ];
+    vm.todos = [];
+    // Use this array to start list with todos (testing)
+    // vm.todos = [{
+    //         "todo": 'Be happy',
+    //         "priority": 'High',
+    //         "done": true,
+    //         "editing": false
+    //     },
+    //     {
+    //         "todo": 'Example 2',
+    //         "priority": 'Low',
+    //         "done": false,
+    //         "editing": false
+    //     },
+    //     {
+    //         "todo": 'Finish reading YDKJS',
+    //         "priority": 'High',
+    //         "done": false,
+    //         "editing": false
+    //     },
+    //     {
+    //         "todo": 'Eat',
+    //         "priority": 'Low',
+    //         "done": true,
+    //         "editing": false
+    //     }
+    // ];
     vm.priorities = [
         'High',
         'Medium',
@@ -124,9 +126,5 @@ function HomeController() {
         return (vm.todos.filter(function(x) {
             return x.done == false;
         })).length;
-    }
-
-    vm.seeArray = function(index) {
-        console.log(vm.todos);
     }
 }
