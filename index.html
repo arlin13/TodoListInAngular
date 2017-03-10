@@ -12,6 +12,12 @@
 
         <h1>TODO list</h1>
         <hr>
+        <div class="row">
+            <label class="col-md-6">What needs to be done?</label>
+            <div class="col-md-1"></div>
+            <label class="col-md-2">How important is it?</label>
+            <div class="col-md-3"></div>
+        </div>
         <form id="newTodoForm" class="row">
             <input type="text" placeholder="New todo" class="col-md-6" ng-model="homeCtrl.todo"></input>
             <div class="col-md-1"></div>
@@ -46,19 +52,20 @@
                 <tr ng-repeat="e in homeCtrl.todos">
                     <td>{{$index+1}}</td>
                     <td></td>
-                    <td>
-                      <input type="checkbox" ng-model="e.done" />
-                      <!-- <span ng-bind-html="homeCtrl.todoSpan" ng-dblclick="homeCtrl.editTodo(e.todo)">{{e.todo}}</span> -->
-                      <span id="todoSpan" ng-dblclick="homeCtrl.editTodo(e.todo)">{{e.todo}}</span>
+                    <td> <!--ng-click="e.editing=false"-->
+                        <input type="checkbox" ng-model="e.done" />
+                        <span ng-dblclick="e.editing=true" ng-hide="e.editing">{{e.todo}}</span>
+                        <input type="text" ng-model="e.todo" ng-show="e.editing"
+                               my-enter="e.editing=false"/>
                     </td>
                     <td>{{e.priority}}</td>
                     <td><img src="Images/delete.png" ng-click="homeCtrl.delete($index)"></td>
                 </tr>
             </table>
         </div>
+        <p>You have: {{homeCtrl.pendingTodos()}} todos pending</p>
         <button type="button" ng-click="homeCtrl.pendingTodos()">Ver arreglo</button>
         <hr>
-        <p>You have: {{homeCtrl.pendingTodos()}} todos pending</p>
     </div>
 
     <!-- scripts -->

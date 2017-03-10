@@ -1,6 +1,20 @@
 angular
     .module('app')
-    .controller('HomeController', HomeController);
+    // add HomeController
+    .controller('HomeController', HomeController)
+    // add directive
+    .directive('myEnter', function() {
+        return function(scope, element, attrs) {
+            element.bind("keydown keypress", function(event) {
+                if (event.which === 13) {
+                    scope.$apply(function() {
+                        scope.$eval(attrs.myEnter);
+                    });
+                    event.preventDefault();
+                }
+            });
+        };
+    });
 
 function HomeController() {
     var vm = this;
@@ -11,32 +25,33 @@ function HomeController() {
     vm.todos = [{
             "todo": 'Be happy',
             "priority": 'High',
-            "done": true
+            "done": true,
+            "editing": false
         },
         {
             "todo": 'Example 2',
             "priority": 'Low',
-            "done": false
+            "done": false,
+            "editing": false
         },
         {
             "todo": 'Finish reading YDKJS',
             "priority": 'High',
-            "done": false
+            "done": false,
+            "editing": false
         },
         {
             "todo": 'Eat',
             "priority": 'Low',
-            "done": true
+            "done": true,
+            "editing": false
         }
     ];
     vm.priorities = [
-        'Priority',
         'High',
         'Medium',
         'Low'
     ];
-
-    vm.todoSpan = "Example";
 
     vm.selectedPriority = vm.priorities[0];
 
@@ -52,16 +67,15 @@ function HomeController() {
     function createTodo(todo, priority) {
         return {
             "todo": todo,
-            "priority": priority
+            "priority": priority,
+            "done": false,
+            "editing": false
         };
     }
 
     // edit todo
     vm.editTodo = function(todo) {
         console.log("editing..." + todo);
-        var elem = angular.element(document.getElementById('todoSpan'));
-        elem.innerHTML = '<p>Hola mundo</p>';
-        console.log(elem);
     }
 
     // order todo list by todo name
