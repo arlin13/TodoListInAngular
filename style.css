@@ -1,9 +1,14 @@
-img{
-  height: 10px;
+body{
+  background-image: url("Images/freedom-white.jpg");
+  background-size: cover;
 }
 
-p{
-  text-align: right;
+p {
+    text-align: right;
+}
+
+.icon {
+    height: 10px;
 }
 
 #container {
@@ -22,7 +27,16 @@ p{
     height: 32px;
 }
 
+#freedomDiv{
+  height: 100%;
+}
+
+#freedomDiv img{
+  height: 200px;
+}
+
 /*media queries*/
+
 @media only screen and (min-width: 400px) {
     /*#newTodoForm{
         margin: 0 auto;
@@ -48,7 +62,7 @@ p{
 }
 
 @media only screen and (min-width: 750px) {
-  /*#container {
+    /*#container {
       width: 90%;
       margin: 0 auto;
       background-color: green;

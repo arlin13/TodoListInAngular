@@ -32,18 +32,18 @@
         <hr>
 
         <div id="todoListDiv">
-            <table class="table table-stripped table-hover">
+            <table class="table table-stripped table-hover" ng-show="homeCtrl.todos.length>0">
                 <tr>
                     <th></th>
                     <th></th>
                     <th ng-click="homeCtrl.orderByTodo()">
                         <div class="addArrows">
-                            <img src="Images/arrows.png" /> To do:
+                            <img src="Images/arrows.png" class="icon" /> To do:
                         </div>
                     </th>
                     <th ng-click="homeCtrl.orderByPriority()">
                         <div class="addArrows">
-                            <img src="Images/arrows.png" /> Priority:
+                            <img src="Images/arrows.png" class="icon" /> Priority:
                         </div>
                     </th>
                     <th>
@@ -52,16 +52,20 @@
                 <tr ng-repeat="e in homeCtrl.todos">
                     <td>{{$index+1}}</td>
                     <td></td>
-                    <td> <!--ng-click="e.editing=false"-->
+                    <td>
+                        <!--ng-click="e.editing=false"-->
                         <input type="checkbox" ng-model="e.done" />
                         <span ng-dblclick="e.editing=true" ng-hide="e.editing">{{e.todo}}</span>
-                        <input type="text" ng-model="e.todo" ng-show="e.editing"
-                               my-enter="e.editing=false"/>
+                        <input type="text" ng-model="e.todo" ng-show="e.editing" my-enter="e.editing=false" />
                     </td>
                     <td>{{e.priority}}</td>
-                    <td><img src="Images/delete.png" ng-click="homeCtrl.delete($index)"></td>
+                    <td><img src="Images/delete.png" class="icon" ng-click="homeCtrl.delete($index)"></td>
                 </tr>
             </table>
+        </div>
+        <div id="freedomDiv" ng-hide="homeCtrl.todos.length>0">
+            <img src="Images/freedom-sign.png">
+            <p></p>
         </div>
         <p>You have: {{homeCtrl.pendingTodos()}} todos pending</p>
         <hr>

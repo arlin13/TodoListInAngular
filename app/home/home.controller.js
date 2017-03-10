@@ -18,7 +18,6 @@ angular
 
 function HomeController() {
     var vm = this;
-    vm.whatever = 4;
     // variables
     vm.orderByTodoStartingByA = false;
     vm.orderByPriorityStartingByA = false;
@@ -63,6 +62,12 @@ function HomeController() {
             vm.newObject = createTodo(vm.todo, vm.selectedPriority);
             vm.todos.push(vm.newObject);
             vm.todo = undefined;
+        }
+        if (vm.todos.length > 0) {
+            var body = angular.element(document.querySelector('body'));
+            body.css('background-image', "none");
+
+            //  $("#myDiv").css('background-image', 'none');
         }
     }
 
