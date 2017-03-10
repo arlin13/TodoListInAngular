@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="app">
-
 <head>
     <meta charset="utf-8">
     <title>TODO List in AngularJS</title>
 </head>
-
-<body ng-controller="HomeController as homeCtrl">
+<body ng-controller="TodoController as todoCtrl">
     <div id="container">
-        <p id="deviceView"></p>
-
         <h1>TODO list</h1>
         <hr>
         <div class="row">
@@ -19,12 +15,12 @@
             <div class="col-md-3"></div>
         </div>
         <form id="newTodoForm" class="row">
-            <input type="text" placeholder="New todo" class="col-md-6" ng-model="homeCtrl.todo"></input>
+            <input type="text" placeholder="New todo" class="col-md-6" ng-model="todoCtrl.todo"></input>
             <div class="col-md-1"></div>
-            <select class="col-md-2" ng-model="homeCtrl.selectedPriority" ng-options="priority for priority in homeCtrl.priorities">
+            <select class="col-md-2" ng-model="todoCtrl.selectedPriority" ng-options="priority for priority in todoCtrl.priorities">
             </select>
             <div class="col-md-1"></div>
-            <button class="btn btn-default col-md-2" type="button" ng-click="homeCtrl.click()">
+            <button class="btn btn-default col-md-2" type="button" ng-click="todoCtrl.click()">
                 Add todo
             </button>
         </form>
@@ -32,16 +28,16 @@
         <hr>
 
         <div id="todoListDiv">
-            <table class="table table-stripped table-hover" ng-show="homeCtrl.todos.length>0">
+            <table class="table table-stripped table-hover" ng-show="todoCtrl.todos.length>0">
                 <tr>
                     <th></th>
                     <th></th>
-                    <th ng-click="homeCtrl.orderByTodo()">
+                    <th ng-click="todoCtrl.orderByTodo()">
                         <div class="addArrows">
                             <img src="Images/arrows.png" class="icon" /> To do:
                         </div>
                     </th>
-                    <th ng-click="homeCtrl.orderByPriority()">
+                    <th ng-click="todoCtrl.orderByPriority()">
                         <div class="addArrows">
                             <img src="Images/arrows.png" class="icon" /> Priority:
                         </div>
@@ -49,7 +45,7 @@
                     <th>
                     </th>
                 </tr>
-                <tr ng-repeat="e in homeCtrl.todos">
+                <tr ng-repeat="e in todoCtrl.todos">
                     <td>{{$index+1}}</td>
                     <td></td>
                     <td>
@@ -59,25 +55,24 @@
                         <input type="text" ng-model="e.todo" ng-show="e.editing" my-enter="e.editing=false" />
                     </td>
                     <td>{{e.priority}}</td>
-                    <td><img src="Images/delete.png" class="icon" ng-click="homeCtrl.delete($index)"></td>
+                    <td><img src="Images/delete.png" class="icon" ng-click="todoCtrl.delete($index)"></td>
                 </tr>
             </table>
         </div>
-        <div id="freedomDiv" ng-hide="homeCtrl.todos.length>0">
+        <div id="freedomDiv" ng-hide="todoCtrl.todos.length>0">
             <img src="Images/freedom-sign.png">
             <p></p>
         </div>
-        <p>You have: {{homeCtrl.pendingTodos()}} todos pending</p>
+        <p>You have: {{todoCtrl.pendingTodos()}} todos pending</p>
         <hr>
     </div>
 
     <!-- scripts -->
-    <link rel="text/javascript" href="index.js">
     <link rel="stylesheet" href="style.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <script src="app/app.module.js"></script>
-    <script src="app/home/home.controller.js"></script>
+    <script src="app/todo/todo.controller.js"></script>
 </body>
 
 </html>
