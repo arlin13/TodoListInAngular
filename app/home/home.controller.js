@@ -4,7 +4,7 @@ angular
 
 function HomeController() {
     var vm = this;
-    vm.whatever =4;
+    vm.whatever = 4;
     // variables
     vm.orderByTodoStartingByA = false;
     vm.orderByPriorityStartingByA = false;
@@ -42,9 +42,11 @@ function HomeController() {
 
     // when user clicks submit button, add a new todo
     vm.click = function click() {
-        vm.newObject = createTodo(vm.todo, vm.selectedPriority);
-        vm.todos.push(vm.newObject);
-        vm.todo = '';
+        if (vm.todo != undefined) {
+            vm.newObject = createTodo(vm.todo, vm.selectedPriority);
+            vm.todos.push(vm.newObject);
+            vm.todo = undefined;
+        }
     }
 
     function createTodo(todo, priority) {
@@ -55,11 +57,11 @@ function HomeController() {
     }
 
     // edit todo
-    vm.editTodo = function(todo){
-      console.log("editing..." + todo);
-      var elem = angular.element(document.getElementById('todoSpan'));
-      elem.innerHTML = '<p>Hola mundo</p>';
-      console.log(elem);
+    vm.editTodo = function(todo) {
+        console.log("editing..." + todo);
+        var elem = angular.element(document.getElementById('todoSpan'));
+        elem.innerHTML = '<p>Hola mundo</p>';
+        console.log(elem);
     }
 
     // order todo list by todo name
@@ -104,11 +106,13 @@ function HomeController() {
     }
 
     // returns the pending todos count
-    vm.pendingTodos = function(index){
-      return (vm.todos.filter(function(x){ return x.done==false; })).length;
+    vm.pendingTodos = function(index) {
+        return (vm.todos.filter(function(x) {
+            return x.done == false;
+        })).length;
     }
 
-    vm.seeArray = function(index){
-      console.log(vm.todos);
+    vm.seeArray = function(index) {
+        console.log(vm.todos);
     }
 }

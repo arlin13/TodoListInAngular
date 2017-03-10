@@ -48,8 +48,8 @@
                     <td></td>
                     <td>
                       <input type="checkbox" ng-model="e.done" />
-                      <span ng-bind-html="homeCtrl.todoSpan" ng-dblclick="homeCtrl.editTodo(e.todo)">{{e.todo}}</span>
-                      <!-- <span id="todoSpan" ng-dblclick="homeCtrl.editTodo(e.todo)">{{e.todo}}</span> -->
+                      <!-- <span ng-bind-html="homeCtrl.todoSpan" ng-dblclick="homeCtrl.editTodo(e.todo)">{{e.todo}}</span> -->
+                      <span id="todoSpan" ng-dblclick="homeCtrl.editTodo(e.todo)">{{e.todo}}</span>
                     </td>
                     <td>{{e.priority}}</td>
                     <td><img src="Images/delete.png" ng-click="homeCtrl.delete($index)"></td>
