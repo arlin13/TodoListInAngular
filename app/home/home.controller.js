@@ -36,6 +36,8 @@ function HomeController() {
         'Low'
     ];
 
+    vm.todoSpan = "Example";
+
     vm.selectedPriority = vm.priorities[0];
 
     // when user clicks submit button, add a new todo
@@ -50,6 +52,14 @@ function HomeController() {
             "todo": todo,
             "priority": priority
         };
+    }
+
+    // edit todo
+    vm.editTodo = function(todo){
+      console.log("editing..." + todo);
+      var elem = angular.element(document.getElementById('todoSpan'));
+      elem.innerHTML = '<p>Hola mundo</p>';
+      console.log(elem);
     }
 
     // order todo list by todo name
