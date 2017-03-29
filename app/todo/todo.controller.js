@@ -32,10 +32,10 @@ function HomeController() {
 
     // when user clicks submit button, add a new todo
     vm.click = function click() {
-        if (vm.todo != undefined) {
-            vm.newObject = createTodo(vm.todo, vm.selectedPriority);
+        if (vm.text != undefined) {
+            vm.newObject = createTodo(vm.text, vm.selectedPriority);
             vm.todos.push(vm.newObject);
-            vm.todo = undefined;
+            vm.text = undefined;
         }
         if (vm.todos.length > 0) {
             var body = angular.element(document.querySelector('body'));
@@ -43,9 +43,9 @@ function HomeController() {
         }
     }
 
-    function createTodo(todo, priority) {
+    function createTodo(text, priority) {
         return {
-            "todo": todo,
+            "text": text,
             "priority": priority,
             "done": false,
             "editing": false

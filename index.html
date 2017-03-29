@@ -15,7 +15,7 @@
             <div class="col-md-3"></div>
         </div>
         <form id="newTodoForm" class="row">
-            <input type="text" placeholder="New todo" class="col-md-6" ng-model="todoCtrl.todo"></input>
+            <input type="text" placeholder="New todo" class="col-md-6" ng-model="todoCtrl.text"></input>
             <div class="col-md-1"></div>
             <select class="col-md-2" ng-model="todoCtrl.selectedPriority" ng-options="priority for priority in todoCtrl.priorities">
             </select>
@@ -45,16 +45,16 @@
                     <th>
                     </th>
                 </tr>
-                <tr ng-repeat="e in todoCtrl.todos">
+                <tr ng-repeat="todo in todoCtrl.todos">
                     <td>{{$index+1}}</td>
                     <td></td>
                     <td>
                         <!--ng-click="e.editing=false"-->
-                        <input type="checkbox" ng-model="e.done" />
-                        <span ng-dblclick="e.editing=true" ng-hide="e.editing">{{e.todo}}</span>
-                        <input type="text" ng-model="e.todo" ng-show="e.editing" my-enter="e.editing=false" />
+                        <input type="checkbox" ng-model="todo.done" />
+                        <span ng-dblclick="todo.editing=true" ng-hide="todo.editing">{{todo.text}}</span>
+                        <input type="text" ng-model="todo.text" ng-show="todo.editing" my-enter="todo.editing=false" />
                     </td>
-                    <td>{{e.priority}}</td>
+                    <td>{{todo.priority}}</td>
                     <td><img src="Images/delete.png" class="icon" ng-click="todoCtrl.delete($index)"></td>
                 </tr>
             </table>
