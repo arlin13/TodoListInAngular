@@ -1,5 +1,5 @@
 body{
-  background-image: url("Images/freedom-white.jpg");
+  /*background-image: url("Images/freedom-white.jpg");*/
   background-size: cover;
 }
 
@@ -9,18 +9,17 @@ p {
 
 .icon {
     height: 15px;
+    margin: 0 10px;
 }
 
 #container {
     width: 90%;
     margin: 0 auto;
-    /*background-color: pink;*/
 }
 
 #newTodoForm {
     width: 100%;
     margin: 0 auto;
-    /*background-color: red;*/
 }
 
 #newTodoForm input, select, button {

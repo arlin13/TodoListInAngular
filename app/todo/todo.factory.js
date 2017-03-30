@@ -37,7 +37,7 @@
 
         function update(id, todoItem) {
           return $http
-            .put('http://localhost:2132/api/TodoItems' + id, todoItem);
+            .put('http://localhost:2132/api/TodoItems/' + id, todoItem);
         }
 
         function create(todoItem) {

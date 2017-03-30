@@ -28,11 +28,11 @@
             vm.orderByTodoStartingByA = false;
             vm.orderByPriorityStartingByA = false;
             vm.todos = [];
-            vm.priorities = [
-                'High',
-                'Medium',
-                'Low'
-            ];
+            vm.priorities = {
+                'High' : 1,
+                'Medium' : 2,
+                'Low' : 3
+            };
 
             vm.selectedPriority = vm.priorities[0];
         }
@@ -76,13 +76,46 @@
                     };
                 }
 
-                function getPriorityNumber(priority) {
+              function getPriorityNumber(priority) {
                     if (priority === "High")
                         return 1;
                     else if (priority === "Medium")
                         return 2;
                     else // "Low"
                         return 3;
+                }
+
+                vm.getPriorityText =  function getPriorityText(priority) {
+                      switch (priority) {
+                        case 1:
+                          return "High";
+                          case 2:
+                          return "Medium";
+                          case 3:
+                          return "Low";
+                        default:
+                        return "";
+                      }
+                  }
+            }
+
+            // DELETE
+            {
+                vm.remove = function remove(index, todoToRemove) {
+                    todoFactory
+                        .remove(todoToRemove.todoItemId)
+                        .then(function(data) {
+                            vm.todos.splice(index, 1);
+                        });
+                }
+            }
+
+            // UPDATE
+            {
+                vm.updateIsDone = function update(todoToUpdate) {
+                  todoToUpdate.isDone = !todoToUpdate.isDone;
+                  todoFactory
+                    .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
             }
 
@@ -123,19 +156,8 @@
                 }
             }
 
-            // DELETE
-            {
-                vm.remove = function remove(index, todoToRemove) {
-                    todoFactory
-                        .remove(todoToRemove.todoItemId)
-                        .then(function(data) {
-                            vm.todos.splice(index, 1);
-                        });
-                }
-            }
-
             // returns the pending todos count
-            vm.pendingTodos = function(index) {
+            vm.pendingTodos = function() {
                 return (vm.todos.filter(function(x) {
                     return x.done == false;
                 })).length;
