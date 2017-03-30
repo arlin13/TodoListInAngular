@@ -123,8 +123,8 @@
                         .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
                 vm.updatePriority = function updatePriority(todoToUpdate) {
-                  todoToUpdate.editingPriority = false;
-                  todoFactory
+                    todoToUpdate.editingPriority = false;
+                    todoFactory
                         .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
             }
