@@ -50,7 +50,7 @@
 
         function remove(id) {
           return $http
-            .delete('http://localhost:2132/api/TodoItems' + id)
+            .delete('http://localhost:2132/api/TodoItems/' + id)
             .then(function(response) {
               return response.data;
             });

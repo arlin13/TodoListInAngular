@@ -6,7 +6,7 @@
 </head>
 <body ng-controller="TodoController as todoCtrl">
     <div id="container">
-        <h1>TODO list {{3+3}}</h1>
+        <h1>TODO list</h1>
         <hr>
         <div class="row">
             <label class="col-md-6">What needs to be done?</label>
@@ -55,7 +55,7 @@
                         <input type="text" ng-model="todo.text" ng-show="todo.editing" my-enter="todo.editing=false" />
                     </td>
                     <td>{{todo.priority}}</td>
-                    <td><img src="Images/delete.png" class="icon" ng-click="todoCtrl.delete($index)"></td>
+                    <td><img src="Images/delete.png" class="icon" ng-click="todoCtrl.remove($index, todo)"></td>
                 </tr>
             </table>
         </div>
