@@ -3,7 +3,19 @@
 
     angular
         .module('app')
-        .controller('TodoController', TodoController);
+        .controller('TodoController', TodoController)
+        .directive('myEnter', function() {
+            return function(scope, element, attrs) {
+                element.bind("keydown keypress", function(event) {
+                    if (event.which === 13) {
+                        scope.$apply(function() {
+                            scope.$eval(attrs.myEnter);
+                        });
+                        event.preventDefault();
+                    }
+                });
+            };
+        });
 
     TodoController.$inject = ['todoFactory'];
 
@@ -50,14 +62,9 @@
                             .then(function(data) {
                                 vm.todos.push(data);
                             });
-                        // vm.newObject = createTodo(vm.text, vm.selectedPriority);
-                        // vm.todos.push(vm.newObject);
                         vm.text = undefined;
                     }
-                    if (vm.todos.length > 0) {
-                        var body = angular.element(document.querySelector('body'));
-                        body.css('background-image', "none");
-                    }
+                    hideBackgroundImage();
                 }
 
                 function createTodo(text, priority) {
@@ -82,11 +89,11 @@
             // ORDER BY
             {
                 vm.orderByTodo = function() {
-                    vm.orderByTodoStartingByA == !vm.orderByTodoStartingByA;
+                    vm.orderByTodoStartingByA = !vm.orderByTodoStartingByA;
 
                     vm.todos.sort(function(a, b) {
-                        var todoA = a.todo.toUpperCase();
-                        var todoB = b.todo.toUpperCase();
+                        var todoA = a.text.toUpperCase();
+                        var todoB = b.text.toUpperCase();
 
                         if (vm.orderByTodoStartingByA) {
                             if (todoA < todoB) return -1;
@@ -132,6 +139,14 @@
                 return (vm.todos.filter(function(x) {
                     return x.done == false;
                 })).length;
+            }
+
+            // CSS functions
+            function hideBackgroundImage() {
+                if (vm.todos.length > 0) {
+                    var body = angular.element(document.querySelector('body'));
+                    body.css('background-image', "none");
+                }
             }
         }
     }
