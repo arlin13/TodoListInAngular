@@ -29,9 +29,9 @@
             vm.orderByPriorityStartingByA = false;
             vm.todos = [];
             vm.priorities = {
-                'High' : 1,
-                'Medium' : 2,
-                'Low' : 3
+                'High': 1,
+                'Medium': 2,
+                'Low': 3
             };
 
             vm.selectedPriority = vm.priorities[0];
@@ -76,7 +76,7 @@
                     };
                 }
 
-              function getPriorityNumber(priority) {
+                function getPriorityNumber(priority) {
                     if (priority === "High")
                         return 1;
                     else if (priority === "Medium")
@@ -85,18 +85,18 @@
                         return 3;
                 }
 
-                vm.getPriorityText =  function getPriorityText(priority) {
-                      switch (priority) {
+                vm.getPriorityText = function getPriorityText(priority) {
+                    switch (priority) {
                         case 1:
-                          return "High";
-                          case 2:
-                          return "Medium";
-                          case 3:
-                          return "Low";
+                            return "High";
+                        case 2:
+                            return "Medium";
+                        case 3:
+                            return "Low";
                         default:
-                        return "";
-                      }
-                  }
+                            return "";
+                    }
+                }
             }
 
             // DELETE
@@ -112,10 +112,15 @@
 
             // UPDATE
             {
-                vm.updateIsDone = function update(todoToUpdate) {
-                  todoToUpdate.isDone = !todoToUpdate.isDone;
-                  todoFactory
-                    .update(todoToUpdate.todoItemId, todoToUpdate);
+                vm.updateIsDone = function updateIsDone(todoToUpdate) {
+                    todoToUpdate.isDone = !todoToUpdate.isDone;
+                    todoFactory
+                        .update(todoToUpdate.todoItemId, todoToUpdate);
+                }
+                vm.updateText = function updateText(todoToUpdate) {
+                    todoToUpdate.editing = false;
+                    todoFactory
+                        .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
             }
 
