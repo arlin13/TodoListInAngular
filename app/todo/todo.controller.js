@@ -26,9 +26,16 @@
         // when user clicks submit button, add a new todo
         vm.click = function click() {
             if (vm.text != undefined) {
-                vm.newObject = createTodo(vm.text, vm.selectedPriority);
-                vm.todos.push(vm.newObject);
-                vm.text = undefined;
+                var newTodo = createTodo(vm.text, vm.selectedPriority);
+                todoFactory
+                    .create(newTodo)
+                    .then(function(data) {
+                        console.log(data);
+                        vm.todos.push(data);
+                    });
+                // vm.newObject = createTodo(vm.text, vm.selectedPriority);
+                // vm.todos.push(vm.newObject);
+                // vm.text = undefined;
             }
             if (vm.todos.length > 0) {
                 var body = angular.element(document.querySelector('body'));
@@ -43,6 +50,15 @@
                 "done": false,
                 "editing": false
             };
+        }
+
+        function getPriorityNumber(priority) {
+            if (priority === "High")
+                return 1;
+            else if (priority === "Medium")
+                return 2;
+            else
+                return 3;
         }
 
         // order todo list by todo name
