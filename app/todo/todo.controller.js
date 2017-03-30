@@ -113,7 +113,9 @@
             // UPDATE
             {
                 vm.updateIsDone = function updateIsDone(todoToUpdate) {
-                    todoToUpdate.isDone = !todoToUpdate.isDone;
+                    // console.log(todoToUpdate.isDone);
+                    // todoToUpdate.isDone = !todoToUpdate.isDone;
+                    // console.log(todoToUpdate.isDone);
                     todoFactory
                         .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
