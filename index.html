@@ -54,12 +54,14 @@
                     <td>
                         <!--ng-click="e.editing=false"-->
                         <input type="checkbox" ng-model="todo.isDone" ng-click="todoCtrl.updateIsDone(todo)" />
-                        <span ng-dblclick="todo.editing=true" ng-hide="todo.editing">{{todo.text}}</span>
-                        <input type="text" ng-model="todo.text" ng-show="todo.editing" my-enter="todoCtrl.updateText(todo)" /> <!--my-enter="todo.editing=false -->
-                        <img src="Images/edit.jpg" ng-hide="todo.editing" class="icon" ng-click="">
+                        <span ng-dblclick="todo.editingText=true" ng-hide="todo.editingText">{{todo.text}}</span>
+                        <input type="text" ng-model="todo.text" ng-show="todo.editingText" my-enter="todoCtrl.updateText(todo)" ng-blur="todoCtrl.updateText(todo)"/> <!--my-enter="todo.editing=false -->
+                        <img src="Images/edit.jpg" ng-hide="todo.editingText" class="icon" ng-click="">
                     </td>
                     <td>
                         {{todoCtrl.getPriorityText(todo.priority)}}
+                        <!-- <select class="col-md-2" ng-model="todoCtrl.selectedPriority" ng-options="priority for priority in todoCtrl.priorities">
+                        </select> -->
                         <img src="Images/edit.jpg" class="icon" ng-click="">
                     </td>
                     <td><img src="Images/delete.png" class="icon" ng-click="todoCtrl.remove($index, todo)"></td>

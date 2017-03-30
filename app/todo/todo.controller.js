@@ -72,7 +72,7 @@
                         "text": text,
                         "priority": getPriorityNumber(priority),
                         "done": false,
-                        "editing": false
+                        "editingText": false
                     };
                 }
 
@@ -118,8 +118,13 @@
                         .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
                 vm.updateText = function updateText(todoToUpdate) {
-                    todoToUpdate.editing = false;
+                    todoToUpdate.editingText = false;
                     todoFactory
+                        .update(todoToUpdate.todoItemId, todoToUpdate);
+                }
+                vm.updatePriority = function updatePriority(todoToUpdate) {
+                  todoToUpdate.editingPriority = false;
+                  todoFactory
                         .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
             }
