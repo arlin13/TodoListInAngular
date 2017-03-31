@@ -19,7 +19,7 @@
         <form id="newTodoForm" class="row">
             <input type="text" placeholder="New todo" class="col-md-6" ng-model="todoCtrl.text"></input>
             <div class="col-md-1"></div>
-            <select class="col-md-2" ng-model="todoCtrl.selectedPriority" ng-options="priority for priority in todoCtrl.priorities">
+            <select class="col-md-2" ng-model="todoCtrl.selectedPriority" ng-options="todoCtrl.getPriorityText(priority) for priority in todoCtrl.priorities">
             </select>
             <div class="col-md-1"></div>
             <button class="btn btn-default col-md-2" type="button" ng-click="todoCtrl.click()">
