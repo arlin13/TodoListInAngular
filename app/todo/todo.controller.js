@@ -33,8 +33,7 @@
                 'Medium': 2,
                 'Low': 3
             };
-
-            vm.selectedPriority = vm.priorities[0];
+            vm.defaultPriority = "Select a Priority";
         }
 
         // ACTIVATE
@@ -54,8 +53,8 @@
         {
             // ADD
             {
-                vm.click = function click() {
-                    if (vm.text != undefined) {
+                vm.addTodo = function addTodo() {
+                    if (vm.text != undefined && vm.selectedPriority != vm.defaultPriority) {
                         var newTodo = createTodo(vm.text, vm.selectedPriority);
                         todoFactory
                             .create(newTodo)
@@ -171,7 +170,7 @@
             // returns the pending todos count
             vm.pendingTodos = function() {
                 return (vm.todos.filter(function(x) {
-                    return x.done == false;
+                    return x.isDone == false;
                 })).length;
             }
 

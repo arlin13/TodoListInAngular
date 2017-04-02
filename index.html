@@ -16,16 +16,25 @@
             <label class="col-md-2">How important is it?</label>
             <div class="col-md-3"></div>
         </div>
-        <form id="newTodoForm" class="row">
-            <input type="text" placeholder="New todo" class="col-md-6" ng-model="todoCtrl.text"></input>
-            <div class="col-md-1"></div>
-            <select class="col-md-2" ng-model="todoCtrl.selectedPriority" ng-options="todoCtrl.getPriorityText(priority) for priority in todoCtrl.priorities">
-            </select>
-            <div class="col-md-1"></div>
-            <button class="btn btn-default col-md-2" type="button" ng-click="todoCtrl.click()">
-                Add todo
-            </button>
-        </form>
+        <div class="row">
+            <div class="col-md-7">
+                <form id="newTodoForm">
+                    <input type="text" placeholder="New todo" class="form-control" ng-model="todoCtrl.text"></input>
+                </form>
+            </div>
+            <div class="col-md-3">
+<!-- ng-init="todoCtrl.selectedPriority = todoCtrl.priorities.High" -->
+                <select class="form-control" ng-model="todoCtrl.selectedPriority" ng-options="todoCtrl.getPriorityText(priority) for priority in todoCtrl.priorities">
+                  <option value="">{{todoCtrl.defaultPriority}}</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-default" type="button" ng-click="todoCtrl.addTodo()">
+                  Add todo
+                </button>
+            </div>
+        </div>
+
 
         <hr>
 
@@ -61,7 +70,7 @@
                     </td>
                     <td>
                         <span ng-dblclick="todo.editingPriority=true" ng-hide="todo.editingPriority">{{todoCtrl.getPriorityText(todo.priority)}}</span>
-                        <select class="col-md-2" ng-options="priority for priority in todoCtrl.priorities" ng-model="todo.priority" ng-show="todo.editingPriority" ng-blur="todoCtrl.updatePriority(todo)">
+                        <select class="col-md-2" ng-options="todoCtrl.getPriorityText(priority) for priority in todoCtrl.priorities" ng-model="todo.priority" ng-show="todo.editingPriority" ng-blur="todoCtrl.updatePriority(todo)">
                         </select>
                         <img src="Images/edit.jpg" class="icon" ng-click="">
                     </td>
