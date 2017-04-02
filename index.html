@@ -61,15 +61,14 @@
                     <td>{{$index+1}}</td>
                     <td></td>
                     <td>
-                        <!--ng-click="e.editing=false"-->
                         <input type="checkbox" ng-model="todo.isDone" ng-click="todoCtrl.updateIsDone(todo)" />
-                        <span ng-dblclick="todo.editingText=true" ng-hide="todo.editingText">{{todo.text}}</span>
+                        <span id="todo-{{$index+1}}" ng-dblclick="todo.editingText=true" ng-hide="todo.editingText" ng-mouseOver="todoCtrl.mouseOver($event)" ng-mouseleave+"todoCtrl.mouseLeave($event)">{{todo.text}}</span>
                         <input type="text" ng-model="todo.text" ng-show="todo.editingText" my-enter="todoCtrl.updateText(todo)" ng-blur="todoCtrl.updateText(todo)" />
-                        <!--my-enter="todo.editing=false -->
-                        <img src="Images/edit.jpg" ng-hide="todo.editingText" class="icon" ng-click="">
+                        <img id="editImg-todo-{{$index+1}}" src="Images/edit.jpg" class="icon" ng-click="" hidden="true">
+                        <!-- ng-hide="todo.editingText" -->
                     </td>
                     <td>
-                        <span ng-dblclick="todo.editingPriority=true" ng-hide="todo.editingPriority">{{todoCtrl.getPriorityText(todo.priority)}}</span>
+                        <span ng-dblclick="todo.editingPriority=true" ng-hide="todo.editingPriority" class="onHoverEdit">{{todoCtrl.getPriorityText(todo.priority)}}</span>
                         <select class="col-md-2" ng-options="todoCtrl.getPriorityText(priority) for priority in todoCtrl.priorities" ng-model="todo.priority" ng-show="todo.editingPriority" ng-blur="todoCtrl.updatePriority(todo)">
                         </select>
                         <img src="Images/edit.jpg" class="icon" ng-click="">
@@ -82,7 +81,7 @@
             <img src="Images/freedom-sign.png">
             <p></p>
         </div>
-        <p>You have: {{todoCtrl.pendingTodos()}} todos pending</p>
+        <p>You have {{todoCtrl.pendingTodos()}} todos pending</p>
         <hr>
     </div>
 

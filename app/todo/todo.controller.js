@@ -112,9 +112,6 @@
             // UPDATE
             {
                 vm.updateIsDone = function updateIsDone(todoToUpdate) {
-                    // console.log(todoToUpdate.isDone);
-                    // todoToUpdate.isDone = !todoToUpdate.isDone;
-                    // console.log(todoToUpdate.isDone);
                     todoFactory
                         .update(todoToUpdate.todoItemId, todoToUpdate);
                 }
@@ -181,6 +178,13 @@
                     body.css('background-image', "none");
                 }
             }
+
+            vm.mouseOver = function mouseOver(event) {
+              var imgId = "editImg-"+event.srcElement.id;
+              var editImg = angular.element(document.getElementById(imgId).removeAttribute("hidden"));
+            }
+
+            
         }
     }
 })();
