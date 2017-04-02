@@ -62,7 +62,7 @@
                     <td></td>
                     <td>
                         <input type="checkbox" ng-model="todo.isDone" ng-click="todoCtrl.updateIsDone(todo)" />
-                        <span id="todo-{{$index+1}}" ng-dblclick="todo.editingText=true" ng-hide="todo.editingText" ng-mouseOver="todoCtrl.mouseOver($event)" ng-mouseleave+"todoCtrl.mouseLeave($event)">{{todo.text}}</span>
+                        <span id="todo-{{$index+1}}" ng-dblclick="todo.editingText=true" ng-hide="todo.editingText" ng-mouseOver="todoCtrl.mouseOver($event)" ng-mouseleave="todoCtrl.mouseLeave($event)">{{todo.text}}</span>
                         <input type="text" ng-model="todo.text" ng-show="todo.editingText" my-enter="todoCtrl.updateText(todo)" ng-blur="todoCtrl.updateText(todo)" />
                         <img id="editImg-todo-{{$index+1}}" src="Images/edit.jpg" class="icon" ng-click="" hidden="true">
                         <!-- ng-hide="todo.editingText" -->

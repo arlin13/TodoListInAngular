@@ -184,7 +184,10 @@
               var editImg = angular.element(document.getElementById(imgId).removeAttribute("hidden"));
             }
 
-            
+            vm.mouseLeave = function mouseLeave(event) {
+              var imgId = "editImg-"+event.srcElement.id;
+              var editImg = angular.element(document.getElementById(imgId).setAttribute("hidden", true));
+            }
         }
     }
 })();
