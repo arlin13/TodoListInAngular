@@ -55,6 +55,8 @@
             {
                 vm.addTodo = function addTodo() {
                     if (vm.text != undefined && vm.selectedPriority != vm.defaultPriority) {
+                        console.log(vm.text);
+                        console.log(vm.selectedPriority);
                         var newTodo = createTodo(vm.text, vm.selectedPriority);
                         todoFactory
                             .create(newTodo)
@@ -67,9 +69,10 @@
                 }
 
                 function createTodo(text, priority) {
+                    // "priority": getPriorityNumber(priority),
                     return {
                         "text": text,
-                        "priority": getPriorityNumber(priority),
+                        "priority": priority,
                         "done": false,
                         "editingText": false
                     };
@@ -180,13 +183,13 @@
             }
 
             vm.mouseOver = function mouseOver(event) {
-              var imgId = "editImg-"+event.srcElement.id;
-              var editImg = angular.element(document.getElementById(imgId).removeAttribute("hidden"));
+                var imgId = "editImg-" + event.srcElement.id;
+                var editImg = angular.element(document.getElementById(imgId).removeAttribute("hidden"));
             }
 
             vm.mouseLeave = function mouseLeave(event) {
-              var imgId = "editImg-"+event.srcElement.id;
-              var editImg = angular.element(document.getElementById(imgId).setAttribute("hidden", true));
+                var imgId = "editImg-" + event.srcElement.id;
+                var editImg = angular.element(document.getElementById(imgId).setAttribute("hidden", true));
             }
         }
     }
